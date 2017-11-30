@@ -2,9 +2,9 @@
 
 var TTT = (function() {
 	var boardTemplate = '<div id="board" class="board"><div id="square1" class="board__square"></div><div id="square2" class="board__square"></div><div id="square3" class="board__square"></div><div id="square4" class="board__square"></div><div id="square5" class="board__square"></div><div id="square6" class="board__square"></div><div id="square7" class="board__square"></div><div id="square8" class="board__square"></div><div id="square9" class="board__square"></div></div>',
-		stylesheet = 'https://yunx14.github.io/TTT/style.css',
 		board,
         squares = [],
+        movesLeft = 9,
 		player = "X";
 
 	function addEvent(el, type, handler){
@@ -12,16 +12,7 @@ var TTT = (function() {
     }
 
     var init = function() {
-    	loadCSS(stylesheet);
     	createBoard();
-    }
-
-    function loadCSS(stylesheet) {
-    	var fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", stylesheet);
-        document.getElementsByTagName("head")[0].appendChild(fileref);
     }
 
     function createBoard() {
@@ -51,7 +42,7 @@ var TTT = (function() {
         }
     }
 
-    function checkForWinner() {
+    function checkForEnd() {
         console.log(squares);
         var lines = [];
         lines[0] = squares[0]._numVal + squares[1]._numVal + squares[2]._numVal;
@@ -65,10 +56,14 @@ var TTT = (function() {
 
         for (var i = 0; i < lines.length; i++) {
             if (lines[i] == 3){
-                console.log("X wins");
+                alert("X wins");
             } else if (lines[i] == -3) {
-                console.log("O wins");
+                alert("O wins");
             }
+        }
+
+        if (movesLeft == 0) {
+            alert('Tie!')
         }
     }
 
@@ -90,12 +85,13 @@ var TTT = (function() {
                     this._numVal = -1;
                 }
                 switchPlayer();
+                movesLeft --;
             } else {
                 return false;
             }
 
             document.getElementById("square"+this._id).innerHTML = this._value;
-            checkForWinner();
+            checkForEnd();
         }
 
     }
