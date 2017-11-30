@@ -2,7 +2,8 @@
 
 var TTT = (function() {
 	var boardTemplate = '<div class="board-overlay"><div id="board" class="board"><div id="square1" class="board__square"></div><div id="square2" class="board__square"></div><div id="square3" class="board__square"></div><div id="square4" class="board__square"></div><div id="square5" class="board__square"></div><div id="square6" class="board__square"></div><div id="square7" class="board__square"></div><div id="square8" class="board__square"></div><div id="square9" class="board__square"></div></div></div>',
-		board,
+		boardOverlay,
+        board,
         squares = [],
         movesLeft = 9,
 		player = "X";
@@ -17,13 +18,19 @@ var TTT = (function() {
 
     function createBoard() {
     	document.body.innerHTML += boardTemplate;
+        boardOverlay = document.getElementsByClassName("board-overlay")[0];
     	board = document.getElementById('board');
+        addEvent(boardOverlay, "click", closeGame);
     	addEvent(board, "click", clickHandler);
 
         var squaresArr = board.querySelectorAll(".board__square");
         for (var i = 0; i < squaresArr.length; i++) {
             squares.push(new Square(i+1));
         }
+    }
+
+    function closeGame() {
+        boardOverlay.style.display = "none";
     }
 
     function clickHandler(e) {
