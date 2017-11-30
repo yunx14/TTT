@@ -1,7 +1,7 @@
 'use strict';
 
 var TTT = (function() {
-	var boardTemplate = '<div id="board" class="board"><div id="square1" class="board__square"></div><div id="square2" class="board__square"></div><div id="square3" class="board__square"></div><div id="square4" class="board__square"></div><div id="square5" class="board__square"></div><div id="square6" class="board__square"></div><div id="square7" class="board__square"></div><div id="square8" class="board__square"></div><div id="square9" class="board__square"></div></div>',
+	var boardTemplate = '<div class="board-overlay"><div id="board" class="board"><div id="square1" class="board__square"></div><div id="square2" class="board__square"></div><div id="square3" class="board__square"></div><div id="square4" class="board__square"></div><div id="square5" class="board__square"></div><div id="square6" class="board__square"></div><div id="square7" class="board__square"></div><div id="square8" class="board__square"></div><div id="square9" class="board__square"></div></div></div>',
 		board,
         squares = [],
         movesLeft = 9,
